@@ -8,10 +8,9 @@ require "changelog/helpers/changes"
 module Changelog
   class Print < Thor
     include Thor::Actions
+    include Changelog::Helpers::Changes
 
     no_commands do
-      include Changelog::Helpers::Changes
-
       def go
         remove_file Changelog.configuration.summary_path
         add_file Changelog.configuration.summary_path

@@ -6,10 +6,9 @@ require "changelog/helpers/changes"
 module Changelog
   class Show < Thor
     include Thor::Actions
+    include Changelog::Helpers::Changes
 
     no_commands do
-      include Changelog::Helpers::Changes
-
       def go(version = nil)
         versions = version.nil? ? default_shown_versions : Array[version]
 

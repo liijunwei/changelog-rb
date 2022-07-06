@@ -40,15 +40,12 @@ module Changelog
         end
 
         sections = []
-        Changelog.natures.each.with_index do |nature, i|
-          if changes = items[nature].presence
-            lines = []
-            lines << "### #{nature}\n"
-            changes.each do |change|
-              lines << "- #{change}\n"
-            end
-            sections << lines.join
-          end
+        items.keys.sort.each do |nature|
+          lines = []
+          lines << "### #{nature}\n"
+          items[nature].each { |change| lines << "- #{change}\n" }
+
+          sections << lines.join("")
         end
 
         sections.join("\n")

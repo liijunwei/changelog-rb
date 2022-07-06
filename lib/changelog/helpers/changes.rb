@@ -55,10 +55,11 @@ module Changelog
       end
 
       def changelog_files(folder)
-        Dir[File.join(destination_root, "#{Changelog.configuration.versions_path}/#{folder}/*.yml")]
-          .sort_by { |path| File.basename(path)} - [
-          File.join(destination_root, "#{Changelog.configuration.versions_path}/#{folder}/tag.yml")
-        ]
+        changelog_files_with_tag(folder).grep_v(/\/tag.yml/)
+      end
+
+      def changelog_files_with_tag(folder)
+        Dir["#{Changelog.configuration.versions_path}/#{folder}/*.yml"]
       end
 
       # TODO refactor this mess...

@@ -4,6 +4,8 @@ require "yaml"
 
 # TODO
 RSpec.describe Changelog::Add do
+  before { FileUtils.rm_rf("#{changelog_root}/unreleased") }
+
   let(:shell) { subject.shell }
 
   it "creates directory ./changelog/unreleased if it does not exist" do

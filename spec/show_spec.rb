@@ -6,7 +6,7 @@ RSpec.describe Changelog::Show do
 
   context "when no version provided" do
     it "prints changes of unreleased and the lastest version" do
-      content = "## [Unreleased]\n### Added\n- ✨ Added add script (@someone)\n- Added setup script (@someone)\n\n### Changed\n- ✨ Support getting title from git commit (@someone)\n\n### Deprecated\n- Deprecated something (@someone)\n\n### Removed\n- Removed something (@someone)\n\n### Fixed\n- Fixed something (@someone)\n\n### Security\n- Added Secure Stuff (@someone)\n## [0.3] - 2017-11-03\n### Added\n- Added something again (@someone)\n"
+      content = "## [Unreleased]\n### Added\n- ✨ Added add script (@someone)\n- Added setup script (@someone)\n\n### Changed\n- ✨ Support getting title from git commit (@someone)\n\n### Deprecated\n- Deprecated something (@someone)\n\n### Fixed\n- Fixed something (@someone)\n\n### Removed\n- Removed something (@someone)\n\n### Security\n- Added Secure Stuff (@someone)\n## [0.3] - 2017-11-03\n### Added\n- Added something again (@someone)\n"
       expect { subject.go }.to output(content).to_stdout
     end
   end

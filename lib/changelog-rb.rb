@@ -12,7 +12,7 @@ require "changelog/print"
 
 module Changelog
   def self.natures
-    ["Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"].freeze
+    %w[Added Changed Deprecated Fixed Removed Security].sort.freeze
   end
 
   def self.dictionary

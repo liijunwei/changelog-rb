@@ -11,11 +11,11 @@
 ### Deprecated
 - Deprecated something (@someone)
 
-### Removed
-- Removed something (@someone)
-
 ### Fixed
 - Fixed something (@someone)
+
+### Removed
+- Removed something (@someone)
 
 ### Security
 - Added Secure Stuff (@someone)

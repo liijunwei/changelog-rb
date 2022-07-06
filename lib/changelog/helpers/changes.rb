@@ -43,7 +43,7 @@ module Changelog
         items.keys.sort.each do |nature|
           lines = []
           lines << "### #{nature}\n"
-          items[nature].each { |change| lines << "- #{change}\n" }
+          items[nature].sort.each { |change| lines << "- #{change}\n" }
 
           sections << lines.join("")
         end

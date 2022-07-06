@@ -2,8 +2,8 @@
 
 ## [Unreleased]
 ### Added
-- ✨ Added add script (@someone)
 - Added setup script (@someone)
+- ✨ Added add script (@someone)
 
 ### Changed
 - ✨ Support getting title from git commit (@someone)

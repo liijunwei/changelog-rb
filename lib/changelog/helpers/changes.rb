@@ -9,7 +9,7 @@ module Changelog
         if folder == "unreleased"
           "## [#{version_text(folder)}]\n"
         else
-          meta = WorkaroundYAML.load_file(File.join(destination_root, "#{Changelog.configuration.versions_path}/#{folder}/tag.yml"))
+          meta = WorkaroundYAML.load_file("#{Changelog.configuration.versions_path}/#{folder}/tag.yml")
           date = meta["date"].to_s
           "## [#{version_text(folder)}] - #{date}\n"
         end

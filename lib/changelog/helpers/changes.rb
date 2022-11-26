@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require "yaml"
-require "changelog/helpers/git"
 
 module Changelog
   module Helpers

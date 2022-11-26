@@ -28,10 +28,6 @@ module Changelog
       type: :string,
       desc: "User who makes the changes. Default: $USER",
       aliases: %w(--user -u)
-    method_option :git,
-      type: :string,
-      desc: "Extracts the title from git commit comment. Default: HEAD",
-      aliases: %w(-g)
     def add(title = "")
       Changelog::Add.new.go(title, **options.to_hash.symbolize_keys)
     end

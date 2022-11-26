@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 require "thor"
 require "changelog/helpers/shell"
-require "changelog/helpers/git"
 
 module Changelog
   class Add < Thor
@@ -12,14 +11,8 @@ module Changelog
     end
 
     no_commands do
-      def go(title, nature: "", author: "", git: nil)
-        @title = if git.nil?
-          title
-        else
-          git = git.presence || "HEAD"
-          Changelog::Helpers::Git.comment(git)
-        end
-        @title = @title.gsub(/:\w+:/, "")
+      def go(title, nature: "", author: "")
+        @title = title.gsub(/:\w+:/, "")
         @nature = nature.presence || extract_nature_from_title(@title)
         @author = author.presence || Changelog::Helpers::Shell.system_user
 

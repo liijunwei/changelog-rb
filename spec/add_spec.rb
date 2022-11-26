@@ -79,31 +79,4 @@ RSpec.describe Changelog::Add do
     expect(subject).to receive(:say) {|message| message}
     expect(shell.mute { subject.go("Added command for adding changelog item") }).to eq("Error: author is blank\nchangelog add TITLE -u [author]")
   end
-
-  it "grabs git HEAD commit comment as title" do
-    expect(Changelog::Helpers::Git).to receive(:comment).and_return("Added git support")
-    shell.mute { subject.go("", git: "HEAD") }
-    expect(File).to exist("#{changelog_root}/unreleased/added_git_support.yml")
-
-    yaml = WorkaroundYAML.load_file("#{changelog_root}/unreleased/added_git_support.yml")
-    expect(yaml["title"]).to eq("Added git support\n")
-  end
-
-  it "handles emoji character in the title" do
-    expect(Changelog::Helpers::Git).to receive(:comment).and_return("✨Added git support")
-    shell.mute { subject.go("", git: "HEAD") }
-    expect(File).to exist("#{changelog_root}/unreleased/added_git_support.yml")
-
-    yaml = WorkaroundYAML.load_file("#{changelog_root}/unreleased/added_git_support.yml")
-    expect(yaml["title"]).to eq("✨Added git support\n")
-  end
-
-  it "handles emoji symbol in the title" do
-    expect(Changelog::Helpers::Git).to receive(:comment).and_return(":sparkling: Added git support")
-    shell.mute { subject.go("", git: "HEAD") }
-    expect(File).to exist("#{changelog_root}/unreleased/added_git_support.yml")
-
-    yaml = WorkaroundYAML.load_file("#{changelog_root}/unreleased/added_git_support.yml")
-    expect(yaml["title"]).to eq("Added git support\n")
-  end
 end

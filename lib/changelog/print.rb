@@ -24,13 +24,6 @@ module Changelog
           print_version_header version
           print_changes version
         end
-
-        if Changelog::Helpers::Git.github_url.present?
-          append_to_file Changelog.configuration.summary_path, "\n", verbose: false, force: true
-          versions.each_cons(2) do |v1, v2|
-            append_to_file Changelog.configuration.summary_path, "[#{version_text(v1)}]: #{Changelog::Helpers::Git.compare_url(version_sha(v2), version_sha(v1))}\n", verbose: false
-          end
-        end
       end
 
       def print_version_header(folder)

@@ -22,14 +22,6 @@ module Changelog
         end
       end
 
-      def version_sha(folder)
-        if folder == "unreleased"
-          "HEAD"
-        else
-          Changelog::Helpers::Git.tag(folder) || folder
-        end
-      end
-
       def read_changes(folder)
         items = {}
         changelog_files(folder).each do |file|

@@ -47,7 +47,9 @@ module WorkaroundYAML
     if RUBY_VERSION =~ /3.1/
       YAML.unsafe_load_file(filename)
     else
+      # :nocov:
       YAML.load_file(filename)
+      # :nocov:
     end
   end
 end

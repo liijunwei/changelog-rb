@@ -7,7 +7,6 @@ RSpec.describe Changelog::Print do
   let(:shell) { subject.shell }
 
   it "prints to CHANGELOG.md according to changelog folder" do
-    allow(Changelog::Helpers::Git).to receive(:origin_url).and_return("git@github.com:username/repo.git")
     allow(Changelog::Helpers::Git).to receive(:tag) { |version| "v#{version}" }
 
     shell.mute { subject.go }

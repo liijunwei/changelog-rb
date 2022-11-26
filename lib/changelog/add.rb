@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 require "thor"
-require "changelog/helpers/shell"
 
 module Changelog
   class Add < Thor
@@ -14,7 +13,7 @@ module Changelog
       def go(title, nature: "", author: "")
         @title = title.gsub(/:\w+:/, "")
         @nature = nature.presence || extract_nature_from_title(@title)
-        @author = author.presence || Changelog::Helpers::Shell.system_user
+        @author = author.presence || ENV["USER"]
 
         if @title.blank?
           return say("Error: title is blank\nchangelog add TITLE\nchangelog add -g")

@@ -51,7 +51,7 @@ RSpec.describe Changelog::Add do
   end
 
   it "guesses author from system" do
-    allow(Changelog::Helpers::Shell).to receive(:system_user).and_return("someone")
+    ENV['USER'] = 'someone'
 
     shell.mute { subject.go("Added command for adding changelog item") }
 
@@ -74,8 +74,9 @@ RSpec.describe Changelog::Add do
     expect(shell.mute { subject.go("I love changelog", nature: "Modified") }).to eq("Error: nature is invalid\nchangelog add TITLE -t [#{Changelog.natures.join('|')}]")
   end
 
-  it "raises error if author is not blank" do
-    expect(Changelog::Helpers::Shell).to receive(:system_user).and_return("")
+  it "raises error if author is blank" do
+    ENV['USER'] = ""
+
     expect(subject).to receive(:say) {|message| message}
     expect(shell.mute { subject.go("Added command for adding changelog item") }).to eq("Error: author is blank\nchangelog add TITLE -u [author]")
   end

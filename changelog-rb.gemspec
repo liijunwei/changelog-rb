@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "activesupport", "<= 5.2.8"
   spec.add_runtime_dependency "semantic", "~> 1.6.1"
 
+  spec.add_development_dependency "simplecov"
   spec.add_development_dependency "bundler", "~> 2.3.14"
   spec.add_development_dependency "rake", "~> 13.0.6"
   spec.add_development_dependency "rspec", "~> 3.11.0"

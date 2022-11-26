@@ -1,4 +1,10 @@
 # frozen_string_literal: true
+
+if ENV.fetch('COVERAGE', 'f').start_with? 't'
+  require 'simplecov'
+  SimpleCov.start
+end
+
 require "bundler/setup"
 require "pry"
 require "changelog-rb"
@@ -32,4 +38,3 @@ RSpec.configure do |config|
     FileUtils.rm_rf sandbox_root
   end
 end
-

@@ -51,12 +51,7 @@ module Changelog
       # TODO refactor this mess...
       def version_folders
         version_paths.map {|path| File.basename(path)}.sort_by {|version|
-          if version.is_version?
-            Semantic::Version.new(version)
-          elsif version.match /\A(0|[1-9]\d*)\.(0|[1-9]\d*)\Z/
-            # Example: 0.3, 1.5, convert it to 0.3.0, 1.5.0
-            Semantic::Version.new("#{version}.0")
-          end
+          Semantic::Version.new(version)
         }.reverse
       end
 

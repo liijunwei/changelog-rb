@@ -20,7 +20,7 @@
 ### Security
 - Added Secure Stuff (@someone)
 
-## [0.3] - 2017-11-03
+## [0.3.0] - 2017-11-03
 ### Added
 - Added something again (@someone)
 

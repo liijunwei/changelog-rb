@@ -48,7 +48,7 @@ module Changelog
 
       # TODO refactor this mess...
       def version_folders
-        versions_path.map {|path| File.basename(path)}.sort_by {|version|
+        version_paths.map {|path| File.basename(path)}.sort_by {|version|
           if version.match Semantic::Version::SemVerRegexp
             Semantic::Version.new(version)
           elsif version.match /\A(0|[1-9]\d*)\.(0|[1-9]\d*)\Z/
@@ -58,8 +58,11 @@ module Changelog
         }.reverse
       end
 
-      def versions_path
-        Dir["#{Changelog.configuration.versions_path}/*"] - ["#{Changelog.configuration.versions_path}/unreleased"]
+      def version_paths
+        paths = Dir["#{Changelog.configuration.versions_path}/*"]
+        paths.delete("#{Changelog.configuration.versions_path}/unreleased")
+
+        paths
       end
 
       def latest_version

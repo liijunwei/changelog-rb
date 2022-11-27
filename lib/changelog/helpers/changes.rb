@@ -44,8 +44,9 @@ module Changelog
         sections.join("\n")
       end
 
+      TAG_FILE_REGEXP = Regexp.new("tag.yml")
       def changelog_files(folder)
-        Dir["#{Changelog.configuration.versions_path}/#{folder}/*.yml"].grep_v(/\/tag.yml/)
+        Dir["#{Changelog.configuration.versions_path}/#{folder}/*.yml"].grep_v(TAG_FILE_REGEXP)
       end
 
       def version_folders

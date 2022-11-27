@@ -51,7 +51,7 @@ module Changelog
       # TODO refactor this mess...
       def version_folders
         version_paths.map {|path| File.basename(path)}.sort_by {|version|
-          Semantic::Version.new(version)
+          version.to_version
         }.reverse
       end
 

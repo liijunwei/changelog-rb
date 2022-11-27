@@ -4,18 +4,11 @@ require "spec_helper"
 RSpec.describe Changelog::Setup do
   let(:shell) { subject.shell }
 
-  it "creates directory ./changelog" do
+  it "creates folders and files" do
     shell.mute { subject.go }
+
     expect(File).to exist(changelog_root)
-  end
-
-  it "creates directory ./changelog/unreleased" do
-    shell.mute { subject.go }
     expect(File).to exist("#{changelog_root}/unreleased")
-  end
-
-  it "creates file ./changelog/unreleased/.gitkeep" do
-    shell.mute { subject.go }
     expect(File).to exist("#{changelog_root}/unreleased/.gitkeep")
   end
 

@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "thor", "~> 1.2.1"
-  spec.add_runtime_dependency "activesupport", "<= 5.2.8"
+  spec.add_runtime_dependency "activesupport", "~> 7"
   spec.add_runtime_dependency "semantic", "~> 1.6.1"
 
   spec.add_development_dependency "simplecov"

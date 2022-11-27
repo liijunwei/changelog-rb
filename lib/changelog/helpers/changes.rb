@@ -43,18 +43,14 @@ module Changelog
       end
 
       def changelog_files(folder)
-        changelog_files_with_tag(folder).grep_v(/\/tag.yml/)
-      end
-
-      def changelog_files_with_tag(folder)
-        Dir["#{Changelog.configuration.versions_path}/#{folder}/*.yml"]
+        Dir["#{Changelog.configuration.versions_path}/#{folder}/*.yml"].grep_v(/\/tag.yml/)
       end
 
       # TODO refactor this mess...
       def version_folders
         (Dir[File.join(destination_root, "#{Changelog.configuration.versions_path}/*")] - [
           File.join(destination_root, "#{Changelog.configuration.versions_path}/unreleased")
-        ]).collect {|path| File.basename(path)}.sort_by {|version|
+        ]).map {|path| File.basename(path)}.sort_by {|version|
           if version.match Semantic::Version::SemVerRegexp
             Semantic::Version.new(version)
           elsif version.match /\A(0|[1-9]\d*)\.(0|[1-9]\d*)\Z/

@@ -2,7 +2,6 @@
 require "thor"
 require "yaml"
 require "semantic"
-require "changelog/helpers/git"
 require "changelog/helpers/changes"
 
 module Changelog

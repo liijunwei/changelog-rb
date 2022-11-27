@@ -48,11 +48,8 @@ module Changelog
         Dir["#{Changelog.configuration.versions_path}/#{folder}/*.yml"].grep_v(/\/tag.yml/)
       end
 
-      # TODO refactor this mess...
       def version_folders
-        version_paths.map {|path| File.basename(path)}.sort_by {|version|
-          version.to_version
-        }.reverse
+        version_paths.map { |path| File.basename(path).to_version }.sort.reverse.map(&:to_s)
       end
 
       def version_paths

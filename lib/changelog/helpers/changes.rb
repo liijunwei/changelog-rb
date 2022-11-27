@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 require "yaml"
+require "semantic"
+require 'semantic/core_ext'
 
 module Changelog
   module Helpers
@@ -49,7 +51,7 @@ module Changelog
       # TODO refactor this mess...
       def version_folders
         version_paths.map {|path| File.basename(path)}.sort_by {|version|
-          if version.match Semantic::Version::SemVerRegexp
+          if version.is_version?
             Semantic::Version.new(version)
           elsif version.match /\A(0|[1-9]\d*)\.(0|[1-9]\d*)\Z/
             # Example: 0.3, 1.5, convert it to 0.3.0, 1.5.0

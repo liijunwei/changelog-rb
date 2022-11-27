@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 require "thor"
 require "yaml"
-require "semantic"
 require "changelog/helpers/changes"
 
 module Changelog

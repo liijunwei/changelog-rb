@@ -1,3 +1,5 @@
++ TODO refactoring: generating json output, instead of creating file directly
+
 + TODO maybe we need to attach which issue is related in template(ref: homebrew changelog https://github.com/Homebrew/brew/releases)
 
 # changelog-rb

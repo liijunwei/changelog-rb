@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "/../lib"))
-require "changelog/cli"
-Changelog::CLI.start
+require 'stackprof'
+
+StackProf.run(mode: :cpu, raw: true, out: 'tmp/stackprof-changelog.dump') do
+  $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "/../lib"))
+  require "changelog/cli"
+  Changelog::CLI.start
+end

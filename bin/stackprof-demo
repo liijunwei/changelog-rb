@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+mkdir tmp
+
+bin/changelog > /dev/null
+
+dumpfile=tmp/stackprof-changelog.dump
+grapthfile=tmp/flamegraph.html
+stackprof $dumpfile --text --limit 1
+
+# stackprof --flamegraph $dumpfile > $grapthfile
+# stackprof --flamegraph-viewer=$grapthfile
+stackprof --d3-flamegraph $dumpfile > $grapthfile
+open $grapthfile

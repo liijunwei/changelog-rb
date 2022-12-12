@@ -15,8 +15,7 @@ module Changelog
 
         append_to_file Changelog.configuration.summary_path, "# Changelog\n", verbose: false
 
-        versions = %w[unreleased].concat(version_folders)
-
+        versions = version_paths
         versions.each do |version|
           shell.say_status :append, "changes in #{Changelog.configuration.versions_path}/#{version}", :green unless shell.mute?
           print_version_header version

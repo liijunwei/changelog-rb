@@ -49,19 +49,12 @@ module Changelog
         Dir["#{Changelog.configuration.versions_path}/#{folder}/*.yml"].grep_v(TAG_FILE_REGEXP)
       end
 
-      def version_folders
-        version_paths.map { |path| File.basename(path).to_version }.sort.reverse.map(&:to_s)
-      end
-
       def version_paths
-        paths = Dir.glob("*", base: Changelog.configuration.versions_path)
-        paths.delete("unreleased")
-
-        paths
+        Dir.glob("*", base: Changelog.configuration.versions_path).reverse
       end
 
       def latest_version
-        version_folders.first
+        version_paths[1]
       end
     end
   end

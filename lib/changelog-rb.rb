@@ -15,17 +15,6 @@ module Changelog
     %w[Added Changed Deprecated Fixed Removed Security].sort.freeze
   end
 
-  def self.dictionary
-    {
-      "Added"      => %w[add added new],
-      "Changed"    => %w[change changed update updated make made],
-      "Deprecated" => %w[deprecate deprecated],
-      "Removed"    => %w[remove removed delete deleted],
-      "Fixed"      => %w[fix fixed resolve resolved],
-      "Security"   => %w[security protect],
-    }
-  end
-
   def self.configuration
     @configuration ||= Configuration.new
   end

@@ -27,33 +27,10 @@ RSpec.describe Changelog::Add do
     expect(yaml["author"]).to eq("someone")
   end
 
-  it "guesses nature from title" do
-    shell.mute { subject.go("Added command for adding changelog item") }
-
-    yaml = WorkaroundYAML.load_file("#{changelog_root}/unreleased/added_command_for_adding_changelog_item.yml")
-    expect(yaml["type"]).to eq("Added")
-  end
-
-  it "guesses nature from title in smart way" do
-    {
-      "add something" => "Added",
-      "new feature" => "Added",
-      "ADDED this" => "Added",
-      "update something" => "Changed",
-      "make this happen" => "Changed",
-      "fix something" => "Fixed",
-      "deprecate something" => "Deprecated",
-      "remove this and that" => "Removed",
-      "protect this" => "Security"
-    }.each do |title, nature|
-      expect(subject.extract_nature_from_title(title)).to eq(nature)
-    end
-  end
-
   it "guesses author from system" do
     ENV['USER'] = 'someone'
 
-    shell.mute { subject.go("Added command for adding changelog item") }
+    shell.mute { subject.go("Added command for adding changelog item", nature: 'Added') }
 
     yaml = WorkaroundYAML.load_file("#{changelog_root}/unreleased/added_command_for_adding_changelog_item.yml")
     expect(yaml["author"]).to eq("someone")
@@ -78,6 +55,6 @@ RSpec.describe Changelog::Add do
     ENV['USER'] = ""
 
     expect(subject).to receive(:say) {|message| message}
-    expect(shell.mute { subject.go("Added command for adding changelog item") }).to eq("Error: author is blank\nchangelog add TITLE -u [author]")
+    expect(shell.mute { subject.go("Added command for adding changelog item", nature: 'Added') }).to eq("Error: author is blank\nchangelog add TITLE -u [author]")
   end
 end

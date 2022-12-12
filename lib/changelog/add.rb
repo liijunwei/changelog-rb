@@ -12,7 +12,7 @@ module Changelog
     no_commands do
       def go(title, nature: "", author: "")
         @title = title.gsub(/:\w+:/, "")
-        @nature = nature.presence || extract_nature_from_title(@title)
+        @nature = nature.presence
         @author = author.presence || ENV["USER"]
 
         if @title.blank?
@@ -34,23 +34,6 @@ module Changelog
         template "item.yml", "#{Changelog.configuration.versions_path}/unreleased/#{filename}.yml"
 
         true
-      end
-
-      def extract_nature_from_title(title)
-        first_word = title.parameterize.split("-").first.try(:capitalize)
-        guess_nature_from_word(first_word) || ""
-      end
-
-      def guess_nature_from_word(word)
-        return word if word.blank?
-
-        Changelog.dictionary.each do |nature, words|
-          if words.include?(word.downcase)
-            return nature
-          end
-        end
-
-        nil
       end
     end
   end

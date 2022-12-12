@@ -29,7 +29,9 @@ module Changelog
       end
 
       def default_shown_versions
-        %w[unreleased].push(latest_version).compact
+        unreleased_version, latest_version = version_paths[0], version_paths[1]
+
+        [unreleased_version, latest_version]
       end
     end
   end

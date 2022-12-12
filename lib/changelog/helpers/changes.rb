@@ -52,10 +52,6 @@ module Changelog
       def version_paths
         Dir.glob("*", base: Changelog.configuration.versions_path).reverse
       end
-
-      def latest_version
-        version_paths[1]
-      end
     end
   end
 end

@@ -54,8 +54,8 @@ module Changelog
       end
 
       def version_paths
-        paths = Dir["#{Changelog.configuration.versions_path}/*"]
-        paths.delete("#{Changelog.configuration.versions_path}/unreleased")
+        paths = Dir.glob("*", base: Changelog.configuration.versions_path)
+        paths.delete("unreleased")
 
         paths
       end

@@ -27,15 +27,6 @@ RSpec.describe Changelog::Add do
     expect(yaml["author"]).to eq("someone")
   end
 
-  it "guesses author from system" do
-    ENV['USER'] = 'someone'
-
-    shell.mute { subject.go("Added command for adding changelog item", nature: 'Added') }
-
-    yaml = WorkaroundYAML.load_file("#{changelog_root}/unreleased/added_command_for_adding_changelog_item.yml")
-    expect(yaml["author"]).to eq("someone")
-  end
-
   it "raises error if title is blank" do
     expect(subject).to receive(:say) {|message| message}
     expect(shell.mute { subject.go("") }).to eq("Error: title is blank\nchangelog add TITLE\nchangelog add -g")

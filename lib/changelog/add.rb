@@ -13,7 +13,7 @@ module Changelog
       def go(title, nature: "", author: "")
         @title = title.gsub(/:\w+:/, "")
         @nature = nature.presence
-        @author = author.presence || ENV["USER"]
+        @author = author.presence
 
         if @title.blank?
           return say("Error: title is blank\nchangelog add TITLE\nchangelog add -g")
